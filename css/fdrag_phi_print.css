@@ -1,0 +1,21 @@
+/* Set Display to "none" if the Mediatype
+ * is set to "Print".
+ */
+.fdrag_phi_JustPrint
+{
+  border-width:5px;
+  border-style:solid;
+  border-color:red;
+  margin:0; padding:0;
+  text-align:justify;
+  display:block;
+}
+
+/* Test for the next version
+ * 
+#top, #header, #sidebar, #bottom, #footer,
+.postmetadata2, .navigation, #commentform, .commentheader
+{
+   display:none;
+}
+*/

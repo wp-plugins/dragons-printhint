@@ -12,16 +12,11 @@
 	  width:800px;
 }
 
-#fdrag_phi_Input_Col1
+#fdrag_phi_Input_Col
 {
-	vertical-align:middle;
-	width:10em;
-	float:left;
-}
-
-#fdrag_phi_Input_Col2
-{
-	float:left;
+	float:left;	
+	border:medium none;
+	overflow:hidden;
 }
 
 #fdrag_phi_Input_Footer
@@ -34,6 +29,14 @@
 .fdrag_phi_Input li
 {
 	margin:0 0 10px 10px;
+}
+
+.fdrag_phi_Input label
+{
+	float:left;
+	width:150px;
+	font-weight:bold;
+	vertical-align:top;
 }
 
 .fdrag_phi_Input ul

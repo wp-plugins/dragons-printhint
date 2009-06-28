@@ -4,7 +4,7 @@ Donate link: http://www.kronester.com
 Tags: print, comment, license
 Requires at least: 2.7.1
 Tested up to: 2.8
-Stable tag: 0.2
+Stable tag: 0.3
 
 The plugin prints a hint text
 
@@ -28,6 +28,9 @@ Bei Webseiten die nicht unter einer solchen oder ähnlichen Lizenz stehen,
 kann das Ausdrucken zu einer Urheberrechtsverletzung führen.</center>
 [end comment]
 
+In addition you can set now some (comma delimited) CSS classes / idtags to hide while printing.
+If you do this, a <style>-Element is inserted to the header of every page, defining the defined list to be display:none;
+
 == Installation ==
 
 1. Unzip `DragonsPrintHint.zip` to the `/wp-content/plugins/` directory
@@ -36,6 +39,12 @@ kann das Ausdrucken zu einer Urheberrechtsverletzung führen.</center>
 4. Verify your text within the print preview of your browser
 
 == Frequently Asked Questions ==
+
+= What kind of CSS classes / ids can i hide? =
+
+You can insert all CSS classes / ids into the input box. These comma separated list
+will be inserted in a style tag with display:none;
+Be aware that doing some experiments without using your brain can hide the whole page while printing!
 
 == Screenshots ==
 
@@ -47,6 +56,10 @@ kann das Ausdrucken zu einer Urheberrechtsverletzung führen.</center>
 = 0.2 =
 * Remove hint text in search results. 
 * therefore there is no hint if you print the results!
+
+= 0.3 =
+* Changed the file structure (css moved to subfolder)
+* Added functionality for hiding CSS classes / ids while printing
 
 == Arbitrary section ==
 

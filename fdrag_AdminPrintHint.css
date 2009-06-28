@@ -1,0 +1,53 @@
+/* --------------------------------------------------------------------
+   Hinweis-Text
+   -------------------------------------------------------------------- */   
+
+.fdrag_phi_Input
+{
+	  color: black;
+	  font-size: 100.01%;
+	  font-family:'Lucida Grande',sans-serif;
+	  margin:0; padding:20px;
+	  border:1px inset #D2DADA;
+	  width:800px;
+}
+
+#fdrag_phi_Input_Col1
+{
+	vertical-align:middle;
+	width:10em;
+	float:left;
+}
+
+#fdrag_phi_Input_Col2
+{
+	float:left;
+}
+
+#fdrag_phi_Input_Footer
+{
+	clear:both;
+	padding-bottom:10px;
+}
+
+
+.fdrag_phi_Input li
+{
+	margin:0 0 10px 10px;
+}
+
+.fdrag_phi_Input ul
+{
+	padding:0;
+}
+
+.fdrag_phi_donate
+{
+	  color: black;
+	  font-size: 100.01%;
+	  font-family:'Lucida Grande',sans-serif;
+	  text-align:center;
+	  margin:0; padding:20px;
+	  border:1px inset #D2DADA;
+	  width:800px;	
+}

@@ -61,6 +61,7 @@ Be aware that doing some experiments without using your brain can hide the whole
 * Changed the file structure (css moved to subfolder)
 * Added functionality for hiding CSS classes / ids while printing
 
+
 == Arbitrary section ==
 
 

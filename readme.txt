@@ -4,7 +4,7 @@ Donate link: http://www.kronester.com
 Tags: print, comment, license
 Requires at least: 2.7.1
 Tested up to: 2.8
-Stable tag: 0.3
+Stable tag: 0.3.1
 
 The plugin prints a hint text
 
@@ -60,6 +60,10 @@ Be aware that doing some experiments without using your brain can hide the whole
 = 0.3 =
 * Changed the file structure (css moved to subfolder)
 * Added functionality for hiding CSS classes / ids while printing
+
+= 0.3.1 0
+
+CSS subfolder was not deployed with 0.3. Generating new version with css subfolder.
 
 == Arbitrary section ==
 

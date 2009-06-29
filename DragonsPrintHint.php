@@ -3,7 +3,7 @@
 Plugin Name: Dragons Print-Hint
 Plugin URI: http://www.kroni.de/?p=766
 Description: Einblenden eines Hinweis-Textes beim Ausdrucken.
-Version: 0.3.1
+Version: 0.3.2
 Author: Roy Kronester
 Author URI: http://www.kronester.com
 */
@@ -25,19 +25,35 @@ Author URI: http://www.kronester.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-$fdrag_phi_hinttext  = 'Hello world!';
+/* ----------------------------------------------------------------------------------------------------
+   Constants
+   ---------------------------------------------------------------------------------------------------- */
+
+define("FDRAG_PHI_CSS_PATH"		,'/wp-content/plugins/dragons-printhint/css/');
+define("FDRAG_PHI_REMOVECSS"	,'fdrag_phi_removecss');
+define("FDRAG_PHI_HINTTEXT"     ,'fdrag_phi_hinttext');
+
+/* ----------------------------------------------------------------------------------------------------
+   Global Variables
+   ---------------------------------------------------------------------------------------------------- */
+
+$fdrag_phi_hinttext  = '';
 $fdrag_phi_removecss = '';
+
+/* ----------------------------------------------------------------------------------------------------
+   Functions
+   ---------------------------------------------------------------------------------------------------- */
 
 function fdrag_phi_Header()
 {
 	global $fdrag_phi_removecss;
 	
-	$StylePath = get_bloginfo("wpurl") . '/wp-content/plugins/DragonsPrintHint/css/';
+	$StylePath = get_bloginfo("wpurl") . FDRAG_PHI_CSS_PATH;
 
 	echo '<link rel="stylesheet" type="text/css" href="'.$StylePath.'fdrag_phi_print.css" media="print">';
 	echo '<link rel="stylesheet" type="text/css" href="'.$StylePath.'fdrag_phi_screen.css" media="screen">';
 
-	$opt_removecss = "fdrag_phi_removecss";
+	$opt_removecss = FDRAG_PHI_REMOVECSS;
 
 	if (get_option($opt_removecss))
 	{
@@ -50,13 +66,13 @@ function fdrag_phi_Header()
 	}
 	else
 	{
-		add_option($opt_removecss,'','Entfernt CSS-Blöcke (Kommagetrennte Liste)','no');
+		add_option($opt_removecss,'',__('Entfernt CSS-Blöcke (Kommagetrennte Liste)'),'no');
 	}
 }
 
 function fdrag_phi_ImportStyleSheet()
 {
-	$StyleSheet = WP_PLUGIN_URL . '/DragonsPrintHint/css/fdrag_phi_AdminPrintHint.css';
+	$StyleSheet = get_bloginfo("wpurl") . FDRAG_PHI_CSS_PATH . 'fdrag_phi_AdminPrintHint.css';
 	
     wp_register_style('DragonHintPrintStyle', $StyleSheet);
     wp_enqueue_style( 'DragonHintPrintStyle');
@@ -142,8 +158,8 @@ function fdrag_phi_GetVariables()
 		http_redirect("/wp-login.php", NULL, true, HTTP_REDIRECT_PERM);
 	}
 
-	$opt_hinttext  = "fdrag_phi_hinttext";
-	$opt_removecss = "fdrag_phi_removecss";
+	$opt_hinttext  = FDRAG_PHI_HINTTEXT;
+	$opt_removecss = FDRAG_PHI_REMOVECSS;
 
 	if (get_option($opt_removecss))
 	{
@@ -151,7 +167,7 @@ function fdrag_phi_GetVariables()
 	}
 	else
 	{
-		add_option($opt_removecss,'','Entfernt CSS-Blöcke (Kommagetrennte Liste)','no');
+		add_option($opt_removecss,'',__('Entfernt CSS-Blöcke (Kommagetrennte Liste)'),'no');
 	}
 	
 	if (get_option($opt_hinttext))
@@ -160,7 +176,7 @@ function fdrag_phi_GetVariables()
 	}
 	else
 	{
-		add_option($opt_hinttext,'','Hinweis-Text für Druckausgabe (DragonsPrintHint)','no');
+		add_option($opt_hinttext,'',__('Hinweis-Text für Druckausgabe (DragonsPrintHint)'),'no');
 	}
 	
 //	print 'A:'.$fdrag_phi_removecss;
@@ -179,8 +195,8 @@ function fdrag_phi_SaveVariables()
 		http_redirect("/wp-login.php", NULL, true, HTTP_REDIRECT_PERM);
 	}
 	
-	$opt_hinttext  = "fdrag_phi_hinttext";
-	$opt_removecss = "fdrag_phi_removecss"; 
+	$opt_hinttext  = FDRAG_PHI_HINTTEXT;
+	$opt_removecss = FDRAG_PHI_REMOVECSS;
 
 	update_option($opt_hinttext,$fdrag_phi_hinttext);
 	update_option($opt_removecss,$fdrag_phi_removecss);
@@ -196,17 +212,16 @@ function fdrag_phi_Div_Eingabe()
 	echo '
 		<div class="fdrag_phi_Input">
 			<form action="" method="post">
-				<ul type="none" id="fdrag_phi_Input_Col2">
+				<ul type="none" id="fdrag_phi_Input_Col">
 				    <li>
-						<label     for="HintText">Hint - Text:</label>
-						<textarea name="HintText"             type="text" id="hinttext"  cols="80" rows="5" class="regular-text code">' . $fdrag_phi_hinttext . '</textarea></li>
+						<label     for="HintText">' . __("Hint - Text:") . '</label>
+						<textarea name="HintText" type="text" id="hinttext"  cols="80" rows="5" class="regular-text code">' . $fdrag_phi_hinttext . '</textarea></li>
 					<li>
-						<label     for="RemoveCssWhilePrinting">Hide CSS elements while printing:</label>
+						<label     for="RemoveCssWhilePrinting">' . __("Hide CSS elements while printing:") . '</label>
 						<textarea name="RemoveCssWhilePrinting" type="text" id="removecss" cols="80" rows="5" class="regular-text code">' . $fdrag_phi_removecss . '</textarea></li>
 				</ul>
 				
-				<!-- Submit-Button für Login-Daten -->
-				<ul type="none" id="fdrag_phi_Input_Footer"><li><input type="submit" name="btn_savehint" id="btn_savehint" class="button-primary" value="Speichern" /></li></ul>
+				<ul type="none" id="fdrag_phi_Input_Footer"><li><input type="submit" name="btn_savehint" id="btn_savehint" class="button-primary" value="' . __("Save") . '" /></li></ul>
 			</form>
 		</div>
 	';
@@ -243,6 +258,7 @@ function fdrag_phi_RemovePrintHint($text)
 	return $text;
 }
 
+/* Install Filter and Actions */
 
 remove_action("admin_print_styles", fdrag_phi_ImportStyleSheet);
 remove_action("wp_head"	          , fdrag_phi_Header);
@@ -253,6 +269,11 @@ add_action("admin_print_styles", fdrag_phi_ImportStyleSheet    );
 add_action('wp_head'	       , fdrag_phi_Header           ,10);
 
 add_filter('the_content','fdrag_phi_PrintHintFilter',1);
+
 add_filter('the_excerpt','fdrag_phi_RemovePrintHint',1);
+
+add_filter('the_excerpt_rss','fdrag_phi_RemovePrintHint',1);
+add_filter('the_content_rss','fdrag_phi_RemovePrintHint',1);
+
 
 ?>

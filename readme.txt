@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: Roy Kronester
-Donate link: http://www.kronester.com
-Tags: print, comment, license
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6387192
+Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Tested up to: 2.8
-Stable tag: 0.3.1
+Stable tag: 0.3.2
 
 The plugin prints a hint text
 
@@ -61,9 +61,15 @@ Be aware that doing some experiments without using your brain can hide the whole
 * Changed the file structure (css moved to subfolder)
 * Added functionality for hiding CSS classes / ids while printing
 
-= 0.3.1 0
+= 0.3.1 =
 
 CSS subfolder was not deployed with 0.3. Generating new version with css subfolder.
+
+= 0.3.2 =
+
+* FIXED: Remove PrintHint on RSS-Feeds (Excerpt/Content)
+* FIXED: Directory structure was wrong in systems which was case sensitive
+* NEW:   Insert base support for I18N 
 
 == Arbitrary section ==
 

@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# Roy Kronester <Roy@Kronester.com>, 2009.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/dragons-printhint\n"
+"POT-Creation-Date: 2009-06-29 21:23+0000\n"
+"PO-Revision-Date: 2009-06-29 23:23+0002\n"
+"Last-Translator: Roy Kronester <Roy@Kronester.com>\n"
+"Language-Team: ENGLISH <Roy@Kronester.com> \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: DragonsPrintHint.php:69 DragonsPrintHint.php:170
+msgid "Entfernt CSS-Blöcke (Kommagetrennte Liste)"
+msgstr "Remove CSS blocks (comma separated list)"
+
+#: DragonsPrintHint.php:179
+msgid "Hinweis-Text für Druckausgabe (DragonsPrintHint)"
+msgstr "Hint text for printout (DragonsPrintHint)"
+
+#: DragonsPrintHint.php:217
+msgid "Hint - Text:"
+msgstr "Hint text:"
+
+#: DragonsPrintHint.php:220
+msgid "Hide CSS elements while printing:"
+msgstr "CSS elements to hide while printing:"
+
+#: DragonsPrintHint.php:224
+msgid "Save"
+msgstr "Save"

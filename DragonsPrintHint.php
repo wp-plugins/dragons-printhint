@@ -3,7 +3,7 @@
 Plugin Name: Dragons Print-Hint
 Plugin URI: http://www.kroni.de/?p=766
 Description: Einblenden eines Hinweis-Textes beim Ausdrucken.
-Version: 0.3.2
+Version: 0.3.3
 Author: Roy Kronester
 Author URI: http://www.kronester.com
 */
@@ -29,16 +29,31 @@ Author URI: http://www.kronester.com
    Constants
    ---------------------------------------------------------------------------------------------------- */
 
-define("FDRAG_PHI_CSS_PATH"		,'/wp-content/plugins/dragons-printhint/css/');
+define("FDRAG_PHI_FOLDER"		,WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__)));
+define("FDRAG_PHI_CSS_PATH"		,FDRAG_PHI_FOLDER. 'css/');
+define("FDRAG_PHI_I18N_PATH"	,FDRAG_PHI_FOLDER. 'i18n/');
+define("FDRAG_PHI_I18N_RELPATH"	,str_replace(ABSPATH, "", WP_PLUGIN_DIR.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__)).'i18n/'));
+define("FDRAG_PHI_I18N_PLGPATH" ,str_replace(basename( __FILE__),"",plugin_basename(__FILE__)).'i18n/');
+define("FDRAG_PHI_WP_BLOCK_URL" ,get_bloginfo("wpurl").'/');
+
 define("FDRAG_PHI_REMOVECSS"	,'fdrag_phi_removecss');
 define("FDRAG_PHI_HINTTEXT"     ,'fdrag_phi_hinttext');
 
 /* ----------------------------------------------------------------------------------------------------
-   Global Variables
+   Global Variables (define explicit as GLOBAL)
    ---------------------------------------------------------------------------------------------------- */
+  
+global $fdrag_phi_hinttext;
+global $fdrag_phi_removecss;
 
 $fdrag_phi_hinttext  = '';
 $fdrag_phi_removecss = '';
+
+/* ----------------------------------------------------------------------------------------------------
+   Options initialising on activation
+   ---------------------------------------------------------------------------------------------------- */
+
+register_activation_hook(__FILE__, 'fdrag_phi_GetVariables');
 
 /* ----------------------------------------------------------------------------------------------------
    Functions
@@ -48,10 +63,8 @@ function fdrag_phi_Header()
 {
 	global $fdrag_phi_removecss;
 	
-	$StylePath = get_bloginfo("wpurl") . FDRAG_PHI_CSS_PATH;
-
-	echo '<link rel="stylesheet" type="text/css" href="'.$StylePath.'fdrag_phi_print.css" media="print">';
-	echo '<link rel="stylesheet" type="text/css" href="'.$StylePath.'fdrag_phi_screen.css" media="screen">';
+	echo '<link rel="stylesheet" type="text/css" href="'.FDRAG_PHI_CSS_PATH.'fdrag_phi_print.css" media="print">';
+	echo '<link rel="stylesheet" type="text/css" href="'.FDRAG_PHI_CSS_PATH.'fdrag_phi_screen.css" media="screen">';
 
 	$opt_removecss = FDRAG_PHI_REMOVECSS;
 
@@ -72,7 +85,7 @@ function fdrag_phi_Header()
 
 function fdrag_phi_ImportStyleSheet()
 {
-	$StyleSheet = get_bloginfo("wpurl") . FDRAG_PHI_CSS_PATH . 'fdrag_phi_AdminPrintHint.css';
+	$StyleSheet = FDRAG_PHI_CSS_PATH . 'fdrag_phi_AdminPrintHint.css';
 	
     wp_register_style('DragonHintPrintStyle', $StyleSheet);
     wp_enqueue_style( 'DragonHintPrintStyle');
@@ -167,7 +180,7 @@ function fdrag_phi_GetVariables()
 	}
 	else
 	{
-		add_option($opt_removecss,'',__('Entfernt CSS-Blöcke (Kommagetrennte Liste)'),'no');
+		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)'),'no');
 	}
 	
 	if (get_option($opt_hinttext))
@@ -176,7 +189,7 @@ function fdrag_phi_GetVariables()
 	}
 	else
 	{
-		add_option($opt_hinttext,'',__('Hinweis-Text für Druckausgabe (DragonsPrintHint)'),'no');
+		add_option($opt_hinttext,'',__('Hint-Text for Printout (DragonsPrintHint)'),'no');
 	}
 	
 //	print 'A:'.$fdrag_phi_removecss;
@@ -208,7 +221,7 @@ function fdrag_phi_Div_Eingabe()
 {
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
-	
+		
 	echo '
 		<div class="fdrag_phi_Input">
 			<form action="" method="post">
@@ -258,22 +271,51 @@ function fdrag_phi_RemovePrintHint($text)
 	return $text;
 }
 
+function fdrag_phi_RemovePrintHint_Excerpt($text)
+{
+    $raw_excerpt = $text;
+		
+            $text = get_the_content('');
+
+            $text = strip_shortcodes( $text );
+
+ //           $text = apply_filters('the_content', $text);
+ 
+            $text = str_replace(']]>', ']]&gt;', $text);
+            $text = strip_tags($text);
+            $excerpt_length = apply_filters('excerpt_length', 55);
+            $words = explode(' ', $text, $excerpt_length + 1);
+            if (count($words) > $excerpt_length) {
+                    array_pop($words);
+                    array_push($words, '[...]');
+                    $text = implode(' ', $words);
+    }
+//    return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);					
+
+	return $text;
+}
+
+function fdrag_phi_init()
+{
+	load_plugin_textdomain('dragons-printhint',FDRAG_PHI_I18N_RELPATH,FDRAG_PHI_I18N_PLGPATH);
+	
+	remove_action("admin_print_styles",'fdrag_phi_ImportStyleSheet'	);
+	remove_action("wp_head"	          ,'fdrag_phi_Header'			);
+	remove_action('admin_menu'        ,'fdrag_phi_menu'				);
+	
+	add_action('admin_menu' 		,'fdrag_phi_menu'  				);
+	add_action("admin_print_styles"	,'fdrag_phi_ImportStyleSheet' 	);
+	add_action('wp_head'	       	,'fdrag_phi_Header'           	);
+	
+	add_filter('the_content'		,'fdrag_phi_PrintHintFilter',1);
+	add_filter('the_content_rss'	,'fdrag_phi_RemovePrintHint',1);
+	
+	add_filter('the_excerpt'		,'fdrag_phi_RemovePrintHint_Excerpt',1);	
+	add_filter('the_excerpt_rss'	,'fdrag_phi_RemovePrintHint_Excerpt',1);
+}
+
 /* Install Filter and Actions */
 
-remove_action("admin_print_styles", fdrag_phi_ImportStyleSheet);
-remove_action("wp_head"	          , fdrag_phi_Header);
-remove_action('admin_menu'        , fdrag_phi_menu  );
-
-add_action('admin_menu' ,'fdrag_phi_menu'  );
-add_action("admin_print_styles", fdrag_phi_ImportStyleSheet    );
-add_action('wp_head'	       , fdrag_phi_Header           ,10);
-
-add_filter('the_content','fdrag_phi_PrintHintFilter',1);
-
-add_filter('the_excerpt','fdrag_phi_RemovePrintHint',1);
-
-add_filter('the_excerpt_rss','fdrag_phi_RemovePrintHint',1);
-add_filter('the_content_rss','fdrag_phi_RemovePrintHint',1);
-
+add_action('init' ,'fdrag_phi_init');
 
 ?>

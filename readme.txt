@@ -5,7 +5,7 @@ Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
 Tested up to: 2.8
-Stable tag: 0.3.3
+Stable tag: 0.3.4
 
 The plugin prints a hint text
 
@@ -21,7 +21,7 @@ There are several reasons to print some hints on your posts. These hints will ne
 * Hiding user defined areas of posts / pages - see Example 3 in Arbitrary section
 * Definition of CSS classes (.classname) in a comma separated list. These classes don't appear on printouts.
 * Definition of CSS IDs (#idname) in a comma separated list. These IDs don't appear on printouts.
-* Multilanguage Support: English, Deutsch already implemented
+* Multilanguage Support: English, Deutsch, Russian already implemented
 
 The plugin hooks into *the_content* filter. The *the_excerpt* filter hook is used to remove the hint from displaying on search result page.
 
@@ -72,6 +72,9 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 * FIXED: Display Excerpt with own filter function allows the 55 words output now
 * IMPROVED: More standardized Constants for path definitions 
 * IMPROVED: Added init action for initializing and initialize option on activation
+
+= 0.3.4 =
+* NEW:   Added russian language file
 
 == Arbitrary section ==
 

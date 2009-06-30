@@ -79,7 +79,7 @@ function fdrag_phi_Header()
 	}
 	else
 	{
-		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)'),'no');
+		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)', 'dragons-printhint'),'no');
 	}
 }
 
@@ -180,7 +180,7 @@ function fdrag_phi_GetVariables()
 	}
 	else
 	{
-		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)'),'no');
+		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)', 'dragons-printhint'),'no');
 	}
 	
 	if (get_option($opt_hinttext))
@@ -189,7 +189,7 @@ function fdrag_phi_GetVariables()
 	}
 	else
 	{
-		add_option($opt_hinttext,'',__('Hint-Text for Printout (DragonsPrintHint)'),'no');
+		add_option($opt_hinttext,'',__('Hint-Text for Printout (DragonsPrintHint)', 'dragons-printhint'),'no');
 	}
 	
 //	print 'A:'.$fdrag_phi_removecss;
@@ -227,14 +227,14 @@ function fdrag_phi_Div_Eingabe()
 			<form action="" method="post">
 				<ul type="none" id="fdrag_phi_Input_Col">
 				    <li>
-						<label     for="HintText">' . __("Hint - Text:") . '</label>
+						<label     for="HintText">' . __("Hint - Text:", 'dragons-printhint') . '</label>
 						<textarea name="HintText" type="text" id="hinttext"  cols="80" rows="5" class="regular-text code">' . $fdrag_phi_hinttext . '</textarea></li>
 					<li>
-						<label     for="RemoveCssWhilePrinting">' . __("Hide CSS elements while printing:") . '</label>
+						<label     for="RemoveCssWhilePrinting">' . __("Hide CSS elements while printing:", 'dragons-printhint') . '</label>
 						<textarea name="RemoveCssWhilePrinting" type="text" id="removecss" cols="80" rows="5" class="regular-text code">' . $fdrag_phi_removecss . '</textarea></li>
 				</ul>
 				
-				<ul type="none" id="fdrag_phi_Input_Footer"><li><input type="submit" name="btn_savehint" id="btn_savehint" class="button-primary" value="' . __("Save") . '" /></li></ul>
+				<ul type="none" id="fdrag_phi_Input_Footer"><li><input type="submit" name="btn_savehint" id="btn_savehint" class="button-primary" value="' . __("Save", 'dragons-printhint') . '" /></li></ul>
 			</form>
 		</div>
 	';

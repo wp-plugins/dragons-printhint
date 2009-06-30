@@ -79,7 +79,7 @@ function fdrag_phi_Header()
 	}
 	else
 	{
-		add_option($opt_removecss,'',__('Entfernt CSS-Blöcke (Kommagetrennte Liste)'),'no');
+		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)'),'no');
 	}
 }
 

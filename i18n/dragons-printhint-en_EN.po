@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Dragons PrintHint 0.3.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/dragons-printhint\n"
+"POT-Creation-Date: 2009-06-30 19:38+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Roy Kronester <Roy@Kronester.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+
+#: DragonsPrintHint.php:82
+#: DragonsPrintHint.php:183
+msgid "Removes CSS blocks while printing (comma separated list)"
+msgstr "Removes CSS blocks while printing (comma separated list)"
+
+#: DragonsPrintHint.php:192
+msgid "Hint-Text for Printout (DragonsPrintHint)"
+msgstr "Hint-Text for Printout (DragonsPrintHint)"
+
+#: DragonsPrintHint.php:230
+msgid "Hint - Text:"
+msgstr "Hint - Text:"
+
+#: DragonsPrintHint.php:233
+msgid "Hide CSS elements while printing:"
+msgstr "Hide CSS elements while printing:"
+
+#: DragonsPrintHint.php:237
+msgid "Save"
+msgstr "Save"
+

@@ -3,7 +3,7 @@
 Plugin Name: Dragons Print-Hint
 Plugin URI: http://www.kroni.de/?p=766
 Description: Einblenden eines Hinweis-Textes beim Ausdrucken.
-Version: 0.3.3
+Version: 0.3.4
 Author: Roy Kronester
 Author URI: http://www.kronester.com
 */

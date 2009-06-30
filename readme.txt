@@ -5,7 +5,7 @@ Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
 Tested up to: 2.8
-Stable tag: 0.3.2
+Stable tag: 0.3.3
 
 The plugin prints a hint text
 
@@ -18,6 +18,7 @@ There are several reasons to print some hints on your posts. These hints will ne
 * Definition of a hint text, only appearing on printouts.
   You can use any html tag that can be placed within `<p> ... </p>` to format your hints.
 * Comfortable definition of hint text via admin settings panel.
+* Hiding user defined areas of posts / pages - see Example 3 in Arbitrary section
 * Definition of CSS classes (.classname) in a comma separated list. These classes don't appear on printouts.
 * Definition of CSS IDs (#idname) in a comma separated list. These IDs don't appear on printouts.
 * Multilanguage Support: English, Deutsch already implemented
@@ -68,6 +69,9 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 = 0.3.3 =
 
 * NEW:   Insert Multilanguage support: English, Deutsch
+* FIXED: Display Excerpt with own filter function allows the 55 words output now
+* IMPROVED: More standardized Constants for path definitions 
+* IMPROVED: Added init action for initializing and initialize option on activation
 
 == Arbitrary section ==
 
@@ -81,3 +85,14 @@ kann das Ausdrucken zu einer Urheberrechtsverletzung führen.</center>`
 = Example 2: CSS Class/ID hiding =
 `#header, #top, #footer, #bottom, #sidebar,
 .commentheader, #commentform`
+
+= Example 3: Hide some portion of a post / page while printing =
+Within the post define an area with a userdefined and no more referenced ID.
+This ID don't have to be defined within any CSS stylesheet. It's just for Dragons Print-Hint.
+
+`.. some content of your post
+<div id="RemoveOnPrint"> ... here is some content of the post ... </div>
+.. some more content of your post`
+
+If you define this ID (#RemoveOnPrint) in the "hide css blocks" list (remember: comma separate more then one value)
+you can see the post with all content but while printing the div tag with id="RemoveOnPrint" ist hidden.

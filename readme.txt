@@ -5,7 +5,7 @@ Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
 Tested up to: 2.8
-Stable tag: 0.3.4
+Stable tag: 0.3.5
 
 The plugin prints a hint text
 
@@ -19,6 +19,7 @@ There are several reasons to print some hints on your posts. These hints will ne
   You can use any html tag that can be placed within `<p> ... </p>` to format your hints.
 * Comfortable definition of hint text via admin settings panel.
 * Hiding user defined areas of posts / pages - see Example 3 in Arbitrary section
+* ShortTag [PrintHint] for free definition of post-blocks show only on screen/print output
 * Definition of CSS classes (.classname) in a comma separated list. These classes don't appear on printouts.
 * Definition of CSS IDs (#idname) in a comma separated list. These IDs don't appear on printouts.
 * Multilanguage Support: English, Deutsch, Russian already implemented
@@ -40,6 +41,24 @@ The plugin hooks into *the_content* filter. The *the_excerpt* filter hook is use
 You can insert all CSS classes / ids into the input box. These comma separated list
 will be inserted in a style tag with display:none;
 Be aware that doing some experiments without using your brain can hide the whole page while printing!
+
+= How dow I use the shortcode tags? =
+
+You can enter the shortcode tag like a normal HTML tag in graphic as well as HTML mode within your post/page editor.
+The only thing to do, is to specify the media type when the content between the opening and the closing tag should be shown.
+
+## *Scenarios*  
+
+You want to show a text only online?  
+> *[PrintHint show_on="screen"]* ... appears only on screen ... *[/PrintHint]*  
+             
+You want to show a text only on printout?  
+> *[PrintHint show_on="print"]* ... appears only on printouts ... *[/PrintHint]*  
+   
+## *Hint*  
+             
+Beware of the closing tag *[/PrintHint]* as well as the parameter *show_on*, they are *REQUIRED*!
+If you don't apply the parameter or give them a wrong argument, the block content will not be displayed, anyway.
 
 == Screenshots ==
 
@@ -76,9 +95,13 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 = 0.3.4 =
 * NEW:   Added russian language file
 
+= 0.3.5 =
+* NEW:   Added shortcode tags [PrintHint show_on="screen|print"] ... [/PrintHint]
+
 == Arbitrary section ==
 
 = Example 1: Hint-Text =
+
 `<center><b>Achtung</b> - Urheberrechtshinweis! <br>
 Da dieses Blog unter einer Creative Commons Lizenz steht, 
 stellt das Ausdrucken für Sie kein Problem dar. <br>
@@ -86,10 +109,12 @@ Bei Webseiten die nicht unter einer solchen oder ähnlichen Lizenz stehen,
 kann das Ausdrucken zu einer Urheberrechtsverletzung führen.</center>`
 
 = Example 2: CSS Class/ID hiding =
+
 `#header, #top, #footer, #bottom, #sidebar,
 .commentheader, #commentform`
 
 = Example 3: Hide some portion of a post / page while printing =
+
 Within the post define an area with a userdefined and no more referenced ID.
 This ID don't have to be defined within any CSS stylesheet. It's just for Dragons Print-Hint.
 
@@ -99,3 +124,24 @@ This ID don't have to be defined within any CSS stylesheet. It's just for Dragon
 
 If you define this ID (#RemoveOnPrint) in the "hide css blocks" list (remember: comma separate more then one value)
 you can see the post with all content but while printing the div tag with id="RemoveOnPrint" ist hidden.
+
+= Example 4: Using shortcodes =
+
+If there are areas within your post to explicitly hide/show on screen/print output, 
+you can use the shortcode  
+
+> `[PrintHint show_on="screen|print"] .... [/PrintHint]`.
+
+## Show graphical link only online, on printouts show the URL instead.  
+
+> `Here is my post text 
+ [PrintHint show_on="screen"]<a href="some url"><img src="myImage" /></a>[/PrintHint]
+ [PrintHint show_on="print"]http://myUrl[/PrintHint]<br>
+ and here is the rest of the text.`
+
+The Parameter *show_on* can be used to define the apperance of the content between the shortcode tags.  
+If you define *show_on="screen"* the content part will only be shown an screen outputs. 
+Otherwise, the *show_on="print"* parameter will show the hint only on printouts.  
+
+> Remark: If you dont't use the 'show_on' parameter or forget to close the shortcode tag, there will be no output!
+

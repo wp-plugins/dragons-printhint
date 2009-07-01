@@ -3,7 +3,7 @@
 Plugin Name: Dragons Print-Hint
 Plugin URI: http://www.kroni.de/?p=766
 Description: Einblenden eines Hinweis-Textes beim Ausdrucken.
-Version: 0.3.4
+Version: 0.3.5
 Author: Roy Kronester
 Author URI: http://www.kronester.com
 */
@@ -81,6 +81,22 @@ function fdrag_phi_Header()
 	{
 		add_option($opt_removecss,'',__('Removes CSS blocks while printing (comma separated list)', 'dragons-printhint'),'no');
 	}
+	
+	echo '
+		<!-- Stylesheet definitions for inline post blocks -->
+		
+		<style type="text/css" media="print">
+			.fdrag_phi_inline_printsytle  {display:inherit;}
+			.fdrag_phi_inline_screensytle {display:none;}
+		</style>
+		
+		<style type="text/css" media="screen">
+			.fdrag_phi_inline_printsytle  {display:none;}
+			.fdrag_phi_inline_screensytle {display:inherit;}
+		</style>
+		
+		<!-- End of stylesheet definitions for inline post blocks -->
+		';
 }
 
 function fdrag_phi_ImportStyleSheet()
@@ -295,6 +311,31 @@ function fdrag_phi_RemovePrintHint_Excerpt($text)
 	return $text;
 }
 
+// shortcode function for inline post blocks
+
+function fdrag_phi_InlinePostBlocks($atts, $content=null) 
+{
+	$RetWert = '';
+
+	extract	( shortcode_atts( array('show_on' => 'screen'), $atts ) );
+
+	// Something between the shortcode tags?
+
+	if (is_null($content)) return $RetWert;
+
+	// there is something to do ...#
+
+	switch ($show_on)
+	{
+		case 'screen':	$RetWert = '<div class="fdrag_phi_inline_screensytle">' . do_shortcode($content) . '</div>';
+						break;
+		case 'print':	$RetWert = '<div class="fdrag_phi_inline_printsytle">' . do_shortcode($content) . '</div>';
+						break;
+	}
+
+	return $RetWert;
+}
+
 function fdrag_phi_init()
 {
 	load_plugin_textdomain('dragons-printhint',FDRAG_PHI_I18N_RELPATH,FDRAG_PHI_I18N_PLGPATH);
@@ -312,6 +353,12 @@ function fdrag_phi_init()
 	
 	add_filter('the_excerpt'		,'fdrag_phi_RemovePrintHint_Excerpt',1);	
 	add_filter('the_excerpt_rss'	,'fdrag_phi_RemovePrintHint_Excerpt',1);
+	
+	// Handler for short_code 
+	// [PrintHint show_on="print"]Here is some Text.[/PrintHint]
+	
+	add_shortcode('PrintHint', 'fdrag_phi_InlinePostBlocks');
+
 }
 
 /* Install Filter and Actions */

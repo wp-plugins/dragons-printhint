@@ -93,8 +93,8 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 * IMPROVED: Added init action for initializing and initialize option on activation
 
 = 0.3.4 =
-* NEW:   Added russian language file
-         Russian translate by: Fat Cow (http://www.facebook.com/l/;www.fatcow.com)
+* NEW:   Added russian language file  
+         Russian translate by: Fat Cow (http://www.fatcow.com)
         
 = 0.3.5 =
 * NEW:   Added shortcode tags [PrintHint show_on="screen|print"] ... [/PrintHint]

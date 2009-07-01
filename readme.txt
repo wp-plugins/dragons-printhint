@@ -94,6 +94,7 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 
 = 0.3.4 =
 * NEW:   Added russian language file
+        Russian translate by: Fat Cow (http://www.facebook.com/l/;www.fatcow.com)
 
 = 0.3.5 =
 * NEW:   Added shortcode tags [PrintHint show_on="screen|print"] ... [/PrintHint]

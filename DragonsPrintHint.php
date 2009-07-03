@@ -38,6 +38,7 @@ define("FDRAG_PHI_WP_BLOCK_URL" ,get_bloginfo("wpurl").'/');
 
 define("FDRAG_PHI_REMOVECSS"	,'fdrag_phi_removecss');
 define("FDRAG_PHI_HINTTEXT"     ,'fdrag_phi_hinttext');
+define("FDRAG_PHI_HHACTIVE"		,'fdrag_phi_headerhint_active');
 
 /* ----------------------------------------------------------------------------------------------------
    Global Variables (define explicit as GLOBAL)
@@ -45,9 +46,11 @@ define("FDRAG_PHI_HINTTEXT"     ,'fdrag_phi_hinttext');
   
 global $fdrag_phi_hinttext;
 global $fdrag_phi_removecss;
+global $fdrag_phi_headerhint_active;
 
-$fdrag_phi_hinttext  = '';
-$fdrag_phi_removecss = '';
+$fdrag_phi_headerhint_active 	= '';
+$fdrag_phi_hinttext  			= '';
+$fdrag_phi_removecss 			= '';
 
 /* ----------------------------------------------------------------------------------------------------
    Options initialising on activation
@@ -86,13 +89,13 @@ function fdrag_phi_Header()
 		<!-- Stylesheet definitions for inline post blocks -->
 		
 		<style type="text/css" media="print">
-			.fdrag_phi_inline_printsytle  {display:inherit;}
+			.fdrag_phi_inline_printsytle  {display:inline ;}
 			.fdrag_phi_inline_screensytle {display:none;}
 		</style>
 		
 		<style type="text/css" media="screen">
 			.fdrag_phi_inline_printsytle  {display:none;}
-			.fdrag_phi_inline_screensytle {display:inherit;}
+			.fdrag_phi_inline_screensytle {display:inline ;}
 		</style>
 		
 		<!-- End of stylesheet definitions for inline post blocks -->
@@ -159,6 +162,7 @@ function fdrag_phi_ProcessSubmits()
 {
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
+	global $fdrag_phi_headerhint_active;
 	
 	// ---------------------------------------------------------------------------------------------------------------------------------
 	// Verarbeitung der Daten
@@ -168,8 +172,9 @@ function fdrag_phi_ProcessSubmits()
 	{
 		if ($_POST['btn_savehint'])
 		{	
-			$fdrag_phi_hinttext = htmlspecialchars($_POST['HintText']);
-			$fdrag_phi_removecss= htmlspecialchars($_POST['RemoveCssWhilePrinting']);
+			$fdrag_phi_hinttext 			= htmlspecialchars($_POST['HintText']);
+			$fdrag_phi_removecss			= htmlspecialchars($_POST['RemoveCssWhilePrinting']);
+			$fdrag_phi_headerhint_active 	= htmlspecialchars($_POST['Checkboxes']['IsActivateHeader']);
 		}
 	}
 }
@@ -179,6 +184,7 @@ function fdrag_phi_GetVariables()
 	global $current_user;
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
+	global $fdrag_phi_headerhint_active;
 	
   	get_currentuserinfo();
 
@@ -187,8 +193,18 @@ function fdrag_phi_GetVariables()
 		http_redirect("/wp-login.php", NULL, true, HTTP_REDIRECT_PERM);
 	}
 
-	$opt_hinttext  = FDRAG_PHI_HINTTEXT;
-	$opt_removecss = FDRAG_PHI_REMOVECSS;
+	$opt_hinttext  			= FDRAG_PHI_HINTTEXT;
+	$opt_removecss 			= FDRAG_PHI_REMOVECSS;
+	$opt_headerhint_active 	= FDRAG_PHI_HHACTIVE;
+
+	if (get_option($opt_headerhint_active))
+	{
+		$fdrag_phi_headerhint_active = get_option($opt_headerhint_active);
+	}
+	else
+	{
+		add_option($opt_headerhint_active,'',__('Activate/Deactivate header hint', 'dragons-printhint'),'no');
+	}
 
 	if (get_option($opt_removecss))
 	{
@@ -208,7 +224,7 @@ function fdrag_phi_GetVariables()
 		add_option($opt_hinttext,'',__('Hint-Text for Printout (DragonsPrintHint)', 'dragons-printhint'),'no');
 	}
 	
-//	print 'A:'.$fdrag_phi_removecss;
+	//print 'A:'.$fdrag_phi_headerhint_active;
 }
 	
 function fdrag_phi_SaveVariables()
@@ -216,6 +232,7 @@ function fdrag_phi_SaveVariables()
 	global $current_user;
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
+	global $fdrag_phi_headerhint_active;
 	
   	get_currentuserinfo();
 
@@ -224,27 +241,47 @@ function fdrag_phi_SaveVariables()
 		http_redirect("/wp-login.php", NULL, true, HTTP_REDIRECT_PERM);
 	}
 	
-	$opt_hinttext  = FDRAG_PHI_HINTTEXT;
-	$opt_removecss = FDRAG_PHI_REMOVECSS;
+	$opt_hinttext  			= FDRAG_PHI_HINTTEXT;
+	$opt_removecss 			= FDRAG_PHI_REMOVECSS;
+	$opt_headerhint_active 	= FDRAG_PHI_HHACTIVE;
 
-	update_option($opt_hinttext,$fdrag_phi_hinttext);
-	update_option($opt_removecss,$fdrag_phi_removecss);
+	update_option($opt_hinttext				,$fdrag_phi_hinttext);
+	update_option($opt_removecss			,$fdrag_phi_removecss);
+	update_option($opt_headerhint_active	,$fdrag_phi_headerhint_active);
 	
-//	print 'B:'.$fdrag_phi_removecss;
+	//print 'B:'.$fdrag_phi_headerhint_active;
 }
 
 function fdrag_phi_Div_Eingabe()
 {
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
+	global $fdrag_phi_headerhint_active;
+		
+	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
+	{
+		$IsChecked 		= 'checked="checked"' ;
+		$IsProtectedHH 	= ''; 	
+		$ColorHH		= '';
+	}
+	else 
+	{
+		$IsProtectedHH 	= 'readonly';
+		$ColorHH 		= ' style="color:#c0c0c0;" ';
+		$IsChecked = '';
+	}
 		
 	echo '
 		<div class="fdrag_phi_Input">
 			<form action="" method="post">
 				<ul type="none" id="fdrag_phi_Input_Col">
+					<li>
+						<label for="fdrag_phi_chk_IsActiveHeader">Header hint active: </label>
+						<input type="checkbox" name="Checkboxes[IsActivateHeader]" id="fdrag_phi_chk_IsActiveHeader" value="IsActiveHeader" '. $IsChecked .' />
+					</li>
 				    <li>
 						<label     for="HintText">' . __("Hint - Text:", 'dragons-printhint') . '</label>
-						<textarea name="HintText" type="text" id="hinttext"  cols="80" rows="5" class="regular-text code">' . $fdrag_phi_hinttext . '</textarea></li>
+						<textarea name="HintText" type="text" id="hinttext"  cols="80" rows="5" class="regular-text code" ' .$ColorHH. ' '.$IsProtectedHH.'>' . $fdrag_phi_hinttext . '</textarea></li>
 					<li>
 						<label     for="RemoveCssWhilePrinting">' . __("Hide CSS elements while printing:", 'dragons-printhint') . '</label>
 						<textarea name="RemoveCssWhilePrinting" type="text" id="removecss" cols="80" rows="5" class="regular-text code">' . $fdrag_phi_removecss . '</textarea></li>
@@ -259,29 +296,32 @@ function fdrag_phi_Div_Eingabe()
 function fdrag_phi_PrintHintFilter($text)
 {
 	global $fdrag_phi_hinttext;
-	
+	global $fdrag_phi_headerhint_active;	
+		
 	fdrag_phi_GetVariables();
 	
-	$HintText = '<div class="fdrag_phi_JustPrint"><p>'.htmlspecialchars_decode($fdrag_phi_hinttext).'</p></div>';
+	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
+		$text = '<div class="fdrag_phi_JustPrint"><p>'.htmlspecialchars_decode($fdrag_phi_hinttext).'</p></div>' .  $text;
 	
-	$HintText = $HintText;
-	
-	$text = $HintText . $text;
 	return $text;
 }
 
 function fdrag_phi_RemovePrintHint($text)
 {
 	global $fdrag_phi_hinttext;
+	global $fdrag_phi_headerhint_active;
 	
 	fdrag_phi_GetVariables();
 	
-	$HintText = strip_tags(htmlspecialchars_decode($fdrag_phi_hinttext));
-	$Replace  = '';
-	
-	if (preg_match('/.*$/', $HintText, $Ergebnis))
+	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
 	{
-		$text = substr($text,strpos($text,$Ergebnis[0])+strlen($Ergebnis[0]));
+		$HintText = strip_tags(htmlspecialchars_decode($fdrag_phi_hinttext));
+		$Replace  = '';
+		
+		if (preg_match('/.*$/', $HintText, $Ergebnis))
+		{
+			$text = substr($text,strpos($text,$Ergebnis[0])+strlen($Ergebnis[0]));
+		}	
 	}
 				
 	return $text;
@@ -289,24 +329,27 @@ function fdrag_phi_RemovePrintHint($text)
 
 function fdrag_phi_RemovePrintHint_Excerpt($text)
 {
-    $raw_excerpt = $text;
-		
-            $text = get_the_content('');
+	global $fdrag_phi_headerhint_active;
 
-            $text = strip_shortcodes( $text );
+	fdrag_phi_GetVariables();
 
- //           $text = apply_filters('the_content', $text);
- 
-            $text = str_replace(']]>', ']]&gt;', $text);
-            $text = strip_tags($text);
-            $excerpt_length = apply_filters('excerpt_length', 55);
-            $words = explode(' ', $text, $excerpt_length + 1);
-            if (count($words) > $excerpt_length) {
-                    array_pop($words);
-                    array_push($words, '[...]');
-                    $text = implode(' ', $words);
-    }
-//    return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);					
+ 	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
+	{
+	    $text = get_the_content('');
+	
+	    $text = strip_shortcodes( $text );
+	
+	    $text = str_replace(']]>', ']]&gt;', $text);
+	    $text = strip_tags($text);
+	    $excerpt_length = apply_filters('excerpt_length', 55);
+	    $words = explode(' ', $text, $excerpt_length + 1);
+	    if (count($words) > $excerpt_length) 
+		{
+	        array_pop($words);
+	        array_push($words, '[...]');
+	    	$text = implode(' ', $words);
+	    }	
+	}
 
 	return $text;
 }
@@ -327,9 +370,9 @@ function fdrag_phi_InlinePostBlocks($atts, $content=null)
 
 	switch ($show_on)
 	{
-		case 'screen':	$RetWert = '<div class="fdrag_phi_inline_screensytle">' . do_shortcode($content) . '</div>';
+		case 'screen':	$RetWert = '<span class="fdrag_phi_inline_screensytle">' . do_shortcode($content) . '</span>';
 						break;
-		case 'print':	$RetWert = '<div class="fdrag_phi_inline_printsytle">' . do_shortcode($content) . '</div>';
+		case 'print':	$RetWert = '<span class="fdrag_phi_inline_printsytle">' . do_shortcode($content) . '</span>';
 						break;
 	}
 

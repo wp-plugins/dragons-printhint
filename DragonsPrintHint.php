@@ -177,7 +177,7 @@ function fdrag_phi_ProcessSubmits()
 			$fdrag_phi_headerhint_active 	= htmlspecialchars($_POST['Checkboxes']['IsActivateHeader']);
 			
 			echo '<div class="updated fade" id="message" style="background-color: rgb(255, 251, 204); margin-bottom:20px; margin-left:0;">
-			<p><strong>'.__('Settings saved.',dragons-printhint).'</strong></p></div>';
+			<p><strong>'.__('Settings saved.','dragons-printhint').'</strong></p></div>';
 		}
 	}
 }

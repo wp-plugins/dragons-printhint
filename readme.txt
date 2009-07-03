@@ -99,6 +99,11 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 = 0.3.5 =
 * NEW:   Added shortcode tags [PrintHint show_on="screen|print"] ... [/PrintHint]
 
+= 0.3.6 =
+* NEW:   Added Checkbox to activate / deactivate header hint
+* NEW:	 Added save confirmation message
+* FIXED: Newline issue with shortcodes. Changed div to span. Set css-display to inline.
+
 == Arbitrary section ==
 
 = Example 1: Hint-Text =

@@ -15,22 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: DragonsPrintHint.php:82 DragonsPrintHint.php:183
+#: DragonsPrintHint.php:85 DragonsPrintHint.php:215
 msgid "Removes CSS blocks while printing (comma separated list)"
 msgstr ""
 
-#: DragonsPrintHint.php:192
+#: DragonsPrintHint.php:206
+msgid "Activate/Deactivate header hint"
+msgstr ""
+
+#: DragonsPrintHint.php:224
 msgid "Hint-Text for Printout (DragonsPrintHint)"
 msgstr ""
 
-#: DragonsPrintHint.php:230
+#: DragonsPrintHint.php:283
 msgid "Hint - Text:"
 msgstr ""
 
-#: DragonsPrintHint.php:233
+#: DragonsPrintHint.php:286
 msgid "Hide CSS elements while printing:"
 msgstr ""
 
-#: DragonsPrintHint.php:237
+#: DragonsPrintHint.php:290
 msgid "Save"
 msgstr ""
+

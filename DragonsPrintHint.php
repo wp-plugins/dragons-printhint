@@ -276,7 +276,7 @@ function fdrag_phi_Div_Eingabe()
 			<form action="" method="post">
 				<ul type="none" id="fdrag_phi_Input_Col">
 					<li>
-						<label for="fdrag_phi_chk_IsActiveHeader">Header hint active: </label>
+						<label for="fdrag_phi_chk_IsActiveHeader">' . __('Header hint active:', 'dragons-printhint') . ' </label>
 						<input type="checkbox" name="Checkboxes[IsActivateHeader]" id="fdrag_phi_chk_IsActiveHeader" value="IsActiveHeader" '. $IsChecked .' />
 					</li>
 				    <li>

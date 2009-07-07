@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Dragons PrintHint 0.3.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/dragons-printhint\n"
+"POT-Creation-Date: 2009-07-03 15:50+0000\n"
+"PO-Revision-Date: 2009-07-03 18:04+0100\n"
+"Last-Translator: Kronester <roy@kronester.com>\n"
+"Language-Team: Fat Cow <zhr@tut.by>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#: DragonsPrintHint.php:85
+#: DragonsPrintHint.php:218
+msgid "Removes CSS blocks while printing (comma separated list)"
+msgstr "Удалить CSS блоки (разделенный запятой список)"
+
+#: DragonsPrintHint.php:180
+msgid "Settings saved."
+msgstr ""
+
+#: DragonsPrintHint.php:209
+msgid "Activate/Deactivate header hint"
+msgstr ""
+
+#: DragonsPrintHint.php:227
+msgid "Hint-Text for Printout (DragonsPrintHint)"
+msgstr "Подсказка текста на распечатку (DragonsPrintHint)"
+
+#: DragonsPrintHint.php:282
+msgid "Header hint active:"
+msgstr ""
+
+#: DragonsPrintHint.php:286
+msgid "Hint - Text:"
+msgstr "Текст примечания:"
+
+#: DragonsPrintHint.php:289
+msgid "Hide CSS elements while printing:"
+msgstr "Скрыть CSS элементы при печати:"
+
+#: DragonsPrintHint.php:293
+msgid "Save"
+msgstr "Сохранить"
+

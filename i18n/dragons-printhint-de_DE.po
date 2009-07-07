@@ -32,7 +32,7 @@ msgstr "Hinweistext für Printout (DragonsPrintHint)"
 
 #: DragonsPrintHint.php:282
 msgid "Header hint active:"
-msgstr "Header hint active:"
+msgstr "Hinweis-Text aktivieren:"
 
 #: DragonsPrintHint.php:286
 msgid "Hint - Text:"

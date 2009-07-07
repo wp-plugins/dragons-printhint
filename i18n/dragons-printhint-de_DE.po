@@ -18,27 +18,31 @@ msgstr ""
 msgid "Removes CSS blocks while printing (comma separated list)"
 msgstr "Entfernt CSS-Blöcke während des druckens (Kommagetrennte Liste)"
 
-#: DragonsPrintHint.php:206
+#: DragonsPrintHint.php:180
+msgid "Settings saved."
+msgstr "Einstellungen gesichert."
+
+#: DragonsPrintHint.php:209
 msgid "Activate/Deactivate header hint"
 msgstr "Hinweistext im Kopf Aktivieren / Deaktivieren"
 
-#: DragonsPrintHint.php:224
+#: DragonsPrintHint.php:227
 msgid "Hint-Text for Printout (DragonsPrintHint)"
 msgstr "Hinweistext für Printout (DragonsPrintHint)"
 
-#: DragonsPrintHint.php:283
+#: DragonsPrintHint.php:282
+msgid "Header hint active:"
+msgstr "Header hint active:"
+
+#: DragonsPrintHint.php:286
 msgid "Hint - Text:"
 msgstr "Hinweis-Text:"
 
-#: DragonsPrintHint.php:286
+#: DragonsPrintHint.php:289
 msgid "Hide CSS elements while printing:"
 msgstr "CSS-Elemente die beim Drucken versteckt werden sollen:"
 
-#: DragonsPrintHint.php:290
+#: DragonsPrintHint.php:293
 msgid "Save"
 msgstr "Speichern"
-
-#: DragonsPrintHint.php:279
-msgid "Header hint active:"
-msgstr "Kopfhinweis aktivieren:"
 

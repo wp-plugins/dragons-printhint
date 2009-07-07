@@ -5,7 +5,7 @@ Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
 Tested up to: 2.8
-Stable tag: 0.3.5
+Stable tag: 0.3.6
 
 The plugin prints a hint text
 

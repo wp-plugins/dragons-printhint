@@ -75,7 +75,7 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 
 = 0.3.4 =
 * NEW:   Added russian language file  
-         Russian translate by: Fat Cow (http://www.fatcow.com)
+         Russian translate by: <a href="http://www.fatcow.com">Fat Cow</a> (http://www.fatcow.com)
 
 == Arbitrary section ==
 

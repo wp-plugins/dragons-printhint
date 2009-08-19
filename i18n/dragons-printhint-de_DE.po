@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Dragons PrintHint 0.3.6\n"
+"Project-Id-Version: Dragons PrintHint 0.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/dragons-printhint\n"
-"POT-Creation-Date: 2009-06-30 19:38+0000\n"
+"POT-Creation-Date: 2009-08-19 17:17+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kronester <roy@kronester.com>\n"
 "Language-Team: EROBIC <roy@kronester.com>\n"
@@ -13,36 +13,44 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-Basepath: ..\\\n"
 
-#: DragonsPrintHint.php:85
-#: DragonsPrintHint.php:215
+#: DragonsPrintHint.php:88
+#: DragonsPrintHint.php:235
 msgid "Removes CSS blocks while printing (comma separated list)"
 msgstr "Entfernt CSS-Blöcke während des druckens (Kommagetrennte Liste)"
 
-#: DragonsPrintHint.php:180
+#: DragonsPrintHint.php:185
 msgid "Settings saved."
 msgstr "Einstellungen gesichert."
 
-#: DragonsPrintHint.php:209
+#: DragonsPrintHint.php:217
 msgid "Activate/Deactivate header hint"
 msgstr "Hinweistext im Kopf Aktivieren / Deaktivieren"
 
-#: DragonsPrintHint.php:227
-msgid "Hint-Text for Printout (DragonsPrintHint)"
-msgstr "Hinweistext für Printout (DragonsPrintHint)"
+#: DragonsPrintHint.php:226
+msgid "Bordersytle for print hint"
+msgstr "CSS Rahmen für Druckhinweis"
 
-#: DragonsPrintHint.php:282
+#: DragonsPrintHint.php:244
+msgid "Hint-Text for Printout (DragonsPrintHint)"
+msgstr "Hinweistext für Ausdruck (DragonsPrintHint)"
+
+#: DragonsPrintHint.php:303
 msgid "Header hint active:"
 msgstr "Hinweis-Text aktivieren:"
 
-#: DragonsPrintHint.php:286
+#: DragonsPrintHint.php:307
 msgid "Hint - Text:"
 msgstr "Hinweis-Text:"
 
-#: DragonsPrintHint.php:289
+#: DragonsPrintHint.php:310
 msgid "Hide CSS elements while printing:"
 msgstr "CSS-Elemente die beim Drucken versteckt werden sollen:"
 
-#: DragonsPrintHint.php:293
+#: DragonsPrintHint.php:313
+msgid "Border style:"
+msgstr "CSS Rahmen Stil:"
+
+#: DragonsPrintHint.php:317
 msgid "Save"
 msgstr "Speichern"
 

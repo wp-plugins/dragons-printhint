@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Dragons PrintHint 0.3.6\n"
+"Project-Id-Version: Dragons PrintHint 0.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/dragons-printhint\n"
-"POT-Creation-Date: 2009-07-03 15:50+0000\n"
+"POT-Creation-Date: 2009-08-19 17:17+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kronester <roy@kronester.com>\n"
 "Language-Team: EROBIC <roy@kronester.com>\n"
@@ -13,36 +13,44 @@ msgstr ""
 "X-Poedit-Country: england\n"
 "X-Poedit-Basepath: ..\\\n"
 
-#: DragonsPrintHint.php:85
-#: DragonsPrintHint.php:218
+#: DragonsPrintHint.php:88
+#: DragonsPrintHint.php:235
 msgid "Removes CSS blocks while printing (comma separated list)"
 msgstr "Removes CSS blocks while printing (comma separated list)"
 
-#: DragonsPrintHint.php:180
+#: DragonsPrintHint.php:185
 msgid "Settings saved."
 msgstr "Settings saved."
 
-#: DragonsPrintHint.php:209
+#: DragonsPrintHint.php:217
 msgid "Activate/Deactivate header hint"
 msgstr "Activate/Deactivate header hint"
 
-#: DragonsPrintHint.php:227
+#: DragonsPrintHint.php:226
+msgid "Bordersytle for print hint"
+msgstr "Bordersytle for print hint"
+
+#: DragonsPrintHint.php:244
 msgid "Hint-Text for Printout (DragonsPrintHint)"
 msgstr "Hint-Text for Printout (DragonsPrintHint)"
 
-#: DragonsPrintHint.php:282
+#: DragonsPrintHint.php:303
 msgid "Header hint active:"
 msgstr "Header hint active:"
 
-#: DragonsPrintHint.php:286
+#: DragonsPrintHint.php:307
 msgid "Hint - Text:"
 msgstr "Hint - Text:"
 
-#: DragonsPrintHint.php:289
+#: DragonsPrintHint.php:310
 msgid "Hide CSS elements while printing:"
 msgstr "Hide CSS elements while printing:"
 
-#: DragonsPrintHint.php:293
+#: DragonsPrintHint.php:313
+msgid "Border style:"
+msgstr "Border style:"
+
+#: DragonsPrintHint.php:317
 msgid "Save"
 msgstr "Save"
 

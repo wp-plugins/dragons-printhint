@@ -3,7 +3,7 @@
 Plugin Name: Dragons Print-Hint
 Plugin URI: http://www.kroni.de/?p=766
 Description: Einblenden eines Hinweis-Textes beim Ausdrucken.
-Version: 0.3.7
+Version: 0.4
 Author: Roy Kronester
 Author URI: http://www.kronester.com
 */
@@ -39,6 +39,7 @@ define("FDRAG_PHI_WP_BLOCK_URL" ,get_bloginfo("wpurl").'/');
 define("FDRAG_PHI_REMOVECSS"	,'fdrag_phi_removecss');
 define("FDRAG_PHI_HINTTEXT"     ,'fdrag_phi_hinttext');
 define("FDRAG_PHI_HHACTIVE"		,'fdrag_phi_headerhint_active');
+define("FDRAG_PHI_BORDERSTYLE"  ,'fdrag_phi_borderstyle');
 
 /* ----------------------------------------------------------------------------------------------------
    Global Variables (define explicit as GLOBAL)
@@ -47,10 +48,12 @@ define("FDRAG_PHI_HHACTIVE"		,'fdrag_phi_headerhint_active');
 global $fdrag_phi_hinttext;
 global $fdrag_phi_removecss;
 global $fdrag_phi_headerhint_active;
+global $fdrag_phi_borderstyle;
 
 $fdrag_phi_headerhint_active 	= '';
 $fdrag_phi_hinttext  			= '';
 $fdrag_phi_removecss 			= '';
+$fdrag_phi_borderstyle 			= '';
 
 /* ----------------------------------------------------------------------------------------------------
    Options initialising on activation
@@ -163,6 +166,7 @@ function fdrag_phi_ProcessSubmits()
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
 	global $fdrag_phi_headerhint_active;
+	global $fdrag_phi_borderstyle;
 	
 	// ---------------------------------------------------------------------------------------------------------------------------------
 	// Verarbeitung der Daten
@@ -171,9 +175,10 @@ function fdrag_phi_ProcessSubmits()
 	if ($_POST) 
 	{
 		if ($_POST['btn_savehint'])
-		{	
-			$fdrag_phi_hinttext 			= htmlspecialchars($_POST['HintText']);
-			$fdrag_phi_removecss			= htmlspecialchars($_POST['RemoveCssWhilePrinting']);
+		{			
+			$fdrag_phi_hinttext 			= htmlspecialchars(stripslashes($_POST['HintText']));
+			$fdrag_phi_borderstyle          = htmlspecialchars(stripslashes($_POST['BorderStyle']));
+			$fdrag_phi_removecss			= htmlspecialchars(stripslashes($_POST['RemoveCssWhilePrinting']));
 			$fdrag_phi_headerhint_active 	= htmlspecialchars($_POST['Checkboxes']['IsActivateHeader']);
 			
 			echo '<div class="updated fade" id="message" style="background-color: rgb(255, 251, 204); margin-bottom:20px; margin-left:0;">
@@ -188,6 +193,7 @@ function fdrag_phi_GetVariables()
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
 	global $fdrag_phi_headerhint_active;
+	global $fdrag_phi_borderstyle;
 	
   	get_currentuserinfo();
 
@@ -199,6 +205,8 @@ function fdrag_phi_GetVariables()
 	$opt_hinttext  			= FDRAG_PHI_HINTTEXT;
 	$opt_removecss 			= FDRAG_PHI_REMOVECSS;
 	$opt_headerhint_active 	= FDRAG_PHI_HHACTIVE;
+	$opt_borderstyle        = FDRAG_PHI_BORDERSTYLE;
+	
 
 	if (get_option($opt_headerhint_active))
 	{
@@ -207,6 +215,15 @@ function fdrag_phi_GetVariables()
 	else
 	{
 		add_option($opt_headerhint_active,'',__('Activate/Deactivate header hint', 'dragons-printhint'),'no');
+	}
+
+	if (get_option($opt_borderstyle))
+	{
+		$fdrag_phi_borderstyle = get_option($opt_borderstyle);
+	}
+	else
+	{
+		add_option($opt_borderstyle,'1px solid red',__('Bordersytle for print hint', 'dragons-printhint'),'no');
 	}
 
 	if (get_option($opt_removecss))
@@ -236,6 +253,7 @@ function fdrag_phi_SaveVariables()
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
 	global $fdrag_phi_headerhint_active;
+	global $fdrag_phi_borderstyle;
 	
   	get_currentuserinfo();
 
@@ -247,10 +265,12 @@ function fdrag_phi_SaveVariables()
 	$opt_hinttext  			= FDRAG_PHI_HINTTEXT;
 	$opt_removecss 			= FDRAG_PHI_REMOVECSS;
 	$opt_headerhint_active 	= FDRAG_PHI_HHACTIVE;
+	$opt_borderstyle 		= FDRAG_PHI_BORDERSTYLE;
 
 	update_option($opt_hinttext				,$fdrag_phi_hinttext);
 	update_option($opt_removecss			,$fdrag_phi_removecss);
 	update_option($opt_headerhint_active	,$fdrag_phi_headerhint_active);
+	update_option($opt_borderstyle          ,$fdrag_phi_borderstyle);
 	
 	//print 'B:'.$fdrag_phi_headerhint_active;
 }
@@ -260,6 +280,7 @@ function fdrag_phi_Div_Eingabe()
 	global $fdrag_phi_hinttext;
 	global $fdrag_phi_removecss;
 	global $fdrag_phi_headerhint_active;
+	global $fdrag_phi_borderstyle;
 		
 	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
 	{
@@ -284,10 +305,13 @@ function fdrag_phi_Div_Eingabe()
 					</li>
 				    <li>
 						<label     for="HintText">' . __("Hint - Text:", 'dragons-printhint') . '</label>
-						<textarea name="HintText" type="text" id="hinttext"  cols="80" rows="5" class="regular-text code" ' .$ColorHH. ' '.$IsProtectedHH.'>' . $fdrag_phi_hinttext . '</textarea></li>
+						<textarea name="HintText" type="text" id="hinttext"  cols="80" rows="5" class="regular-text code" ' .$ColorHH. ' '.$IsProtectedHH.'>' . htmlspecialchars_decode($fdrag_phi_hinttext) . '</textarea></li>
 					<li>
 						<label     for="RemoveCssWhilePrinting">' . __("Hide CSS elements while printing:", 'dragons-printhint') . '</label>
-						<textarea name="RemoveCssWhilePrinting" type="text" id="removecss" cols="80" rows="5" class="regular-text code">' . $fdrag_phi_removecss . '</textarea></li>
+						<textarea name="RemoveCssWhilePrinting" type="text" id="removecss" cols="80" rows="5" class="regular-text code">' . htmlspecialchars_decode($fdrag_phi_removecss) . '</textarea></li>
+					<li>
+						<label     for="BorderStyle">' . __("Border style:", 'dragons-printhint') . '</label>
+						<textarea name="BorderStyle" type="text" id="borderstyle" cols="80" rows="1" class="regular-text code">' . htmlspecialchars_decode($fdrag_phi_borderstyle) . '</textarea></li>
 				</ul>
 				
 				<ul type="none" id="fdrag_phi_Input_Footer"><li><input type="submit" name="btn_savehint" id="btn_savehint" class="button-primary" value="' . __("Save", 'dragons-printhint') . '" /></li></ul>
@@ -299,12 +323,18 @@ function fdrag_phi_Div_Eingabe()
 function fdrag_phi_PrintHintFilter($text)
 {
 	global $fdrag_phi_hinttext;
-	global $fdrag_phi_headerhint_active;	
+	global $fdrag_phi_headerhint_active;
+	global $fdrag_phi_borderstyle;
 		
 	fdrag_phi_GetVariables();
 	
+	if(strlen($fdrag_phi_borderstyle)>0)
+		$Border = ' style="border: '.htmlspecialchars_decode($fdrag_phi_borderstyle).';"';
+	else
+		$Border = '';
+	
 	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
-		$text = '<div class="fdrag_phi_JustPrint"><p>'.htmlspecialchars_decode($fdrag_phi_hinttext).'</p></div>' .  $text;
+		$text = '<div class="fdrag_phi_JustPrint"'.$Border.'><p>'.htmlspecialchars_decode($fdrag_phi_hinttext).'</p></div>' .  $text;
 	
 	return $text;
 }

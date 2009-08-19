@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
-Tested up to: 2.8
+Tested up to: 2.8.4
 Stable tag: 0.3.6
 
 The plugin prints a hint text
@@ -22,6 +22,7 @@ There are several reasons to print some hints on your posts. These hints will ne
 * ShortTag [PrintHint] for free definition of post-blocks show only on screen/print output
 * Definition of CSS classes (.classname) in a comma separated list. These classes don't appear on printouts.
 * Definition of CSS IDs (#idname) in a comma separated list. These IDs don't appear on printouts.
+* Style definition for printout border frame
 * Multilanguage Support: English, Deutsch, Russian already implemented
 
 The plugin hooks into *the_content* filter. The *the_excerpt* filter hook is used to remove the hint from displaying on search result page.
@@ -59,6 +60,8 @@ You want to show a text only on printout?
              
 Beware of the closing tag *[/PrintHint]* as well as the parameter *show_on*, they are *REQUIRED*!
 If you don't apply the parameter or give them a wrong argument, the block content will not be displayed, anyway.
+
+Removing the whole border css style from config page will activate the default style defined in fdrag_phi_print.css
 
 == Screenshots ==
 
@@ -103,6 +106,10 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 * NEW:   Added Checkbox to activate / deactivate header hint
 * NEW:	 Added save confirmation message
 * FIXED: Newline issue with shortcodes. Changed div to span. Set css-display to inline.
+
+= 0.4 =
+* NEW:	 Added CSS style definition for printout border frame to config page.
+* FIXED: Quote handling while defining within print message textbox. (backslash removed)
 
 == Arbitrary section ==
 

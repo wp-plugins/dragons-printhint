@@ -8,7 +8,7 @@
   border-color:red;
   margin:0; padding:0;
   text-align:justify;
-  display:block;
+  display:block !important;
 }
 
 /* Test for the next version

@@ -5,7 +5,7 @@ Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
 Tested up to: 2.8.4
-Stable tag: 0.4
+Stable tag: 0.4.1
 
 The plugin prints a hint text
 
@@ -111,6 +111,10 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 * NEW:	 Added CSS style definition for printout border frame to config page.
 * FIXED: Quote handling while defining within print message textbox. (backslash removed)
 
+= 0.4.1 =
+* FIXED: print hint removed on pages without css style sheets. (e.g. RSS feeds)
+         CSS styles changed to hide the div box as default directly on the object.
+
 == Arbitrary section ==
 
 = Example 1: Hint-Text =
@@ -157,4 +161,8 @@ If you define *show_on="screen"* the content part will only be shown an screen o
 Otherwise, the *show_on="print"* parameter will show the hint only on printouts.  
 
 > Remark: If you dont't use the 'show_on' parameter or forget to close the shortcode tag, there will be no output!
+
+= Example 5: Using your own border style for print-hint
+Just enter the border attributes (see http://www.w3schools.com/css/pr_border.asp for usage example)
+without the semicolon. e.g. 5px solid red
 

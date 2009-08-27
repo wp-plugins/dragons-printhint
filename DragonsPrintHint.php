@@ -3,7 +3,7 @@
 Plugin Name: Dragons Print-Hint
 Plugin URI: http://www.kroni.de/?p=766
 Description: Einblenden eines Hinweis-Textes beim Ausdrucken.
-Version: 0.4
+Version: 0.4.1
 Author: Roy Kronester
 Author URI: http://www.kronester.com
 */
@@ -328,10 +328,12 @@ function fdrag_phi_PrintHintFilter($text)
 		
 	fdrag_phi_GetVariables();
 	
+	// Display:none for hiding print-hint on pages without css-stylesheet. e.g. RSS-Feeds
+	
 	if(strlen($fdrag_phi_borderstyle)>0)
-		$Border = ' style="border: '.htmlspecialchars_decode($fdrag_phi_borderstyle).';"';
+		$Border = ' style="dislplay:none; border: '.htmlspecialchars_decode($fdrag_phi_borderstyle).';"';
 	else
-		$Border = '';
+		$Border = ' style="display:none;" ';
 	
 	if($fdrag_phi_headerhint_active == 'IsActiveHeader') 
 		$text = '<div class="fdrag_phi_JustPrint"'.$Border.'><p>'.htmlspecialchars_decode($fdrag_phi_hinttext).'</p></div>' .  $text;

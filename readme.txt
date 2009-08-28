@@ -5,7 +5,7 @@ Tags: print, comment, license, hint, copyright, prettyfier
 Requires at least: 2.7.1
 Text Domain: dragons-printhint
 Tested up to: 2.8.4
-Stable tag: 0.4.1
+Stable tag: 0.4.1.1
 
 The plugin prints a hint text
 
@@ -114,6 +114,9 @@ CSS subfolder was not deployed with 0.3. Generating new version with css subfold
 = 0.4.1 =
 * FIXED: print hint removed on pages without css style sheets. (e.g. RSS feeds)
          CSS styles changed to hide the div box as default directly on the object.
+
+= 0.4.1.1 =
+* FIXED: typing error in style definition for printhint block fixed.
 
 == Arbitrary section ==
 
